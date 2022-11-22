@@ -1,0 +1,28 @@
+[Event "Rated Blitz game"]
+[LichessURL "https://lichess.org/kTYUKvgQ"]
+[Date "2022.05.01"]
+[Round "-"]
+[White "Suyud28"]
+[Black "CRBorn"]
+[Result "0-1"]
+[WhiteElo "2500"]
+[BlackElo "2654"]
+[ECO "A46"]
+[Opening "Indian Defense: Wade-Tartakower Defense"]
+[TimeControl "180+0"]
+[UTCDate "2022.05.01"]
+[UTCTime "00:00:23"]
+[Termination "Normal"]
+[WhiteRatingDiff "-3"]
+[BlackRatingDiff "+3"]
+
+1. d4 d6 2. Nf3 Nf6 3. Bf4 Bf5 4. e3 e6 5. h3 h6 6. Be2 Nbd7 7. O-O g5 8.
+Bh2 Rg8 9. Bg3 g4 10. hxg4 Bxg4 11. Nbd2 Nh5 12. Nh4 Bxe2 13. Qxe2 Nxg3 14.
+fxg3 Rxg3 15. Qh5 Nf6 16. Rxf6 Qxf6 17. Ne4 Qg7 18. Nxg3 Qxg3 19. Nf3 Qg6
+20. Qxg6 fxg6 21. Rf1 Be7 22. g4 Kd7 23. Kg2 Rf8 24. Nd2 Rxf1 25. Nxf1 Bg5
+26. Kf3 d5 27. b3 Kd6 28. Ng3 c5 29. c3 b5 30. Ne2 e5 31. a3 a5 32. a4 bxa4
+33. bxa4 exd4 34. cxd4 h5 35. gxh5 gxh5 36. Ng3 h4 37. Nf5+ Kc6 38. Kg4
+Bxe3 39. Nxe3 cxd4 40. Nd1 Kc5 41. Kxh4 Kb4 42. Kg4 Kxa4 43. Kf3 Kb3 44.
+Ke2 Kc2 45. Nf2 a4 46. Nd3 a3 47. Nb4+ Kb3 48. Nd3 Kc3 49. Nc1 Kb2 50. Nd3+
+Kb1 51. Nb4 Kb2 52. Kd3 Kb3 53. Nc2 a2 54. Nxd4+ Kb2 55. Nc2 Kb1 56. Kd2 d4
+57. Kd1 d3 58. Na1 Kxa1 59. Kc1 d2+ 60. Kc2 d1=Q+ 61. Kxd1 Kb2 0-1
