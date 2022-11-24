@@ -30,7 +30,7 @@ for move in game1.mainline_moves():
     #print(fen)
     #print()
 
-
+print(fen)
 for i in fen:
     if not(i.isnumeric()) and i != "/":
         if i == ' ':
