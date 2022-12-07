@@ -7,6 +7,7 @@
 
 import chess.pgn
 import csv
+import numpy as np
 
 # To clear file on run
 with open('totalMaterial.csv', 'w') as f:
@@ -18,24 +19,24 @@ with open('gameResult.csv', 'w') as f:
     writer = csv.writer(f)
 
 # Open PGN
-pgn = open("chessgames2.txt")
+pgn = open("chessgames.txt")
 
 # Lookup table for piece values
-dict = {'r': 5, 'R': 5, 'n': 3,'N': 3, 'b': 3, 'B': 3, 'q': 9,'Q': 9, 'k': 0, 'K': 0, 'p': 1,'P': 1}
+dict = {'r': 5, 'R': 5, 'n': 3, 'N': 3, 'b': 3, 'B': 3, 'q': 9, 'Q': 9, 'k': 0, 'K': 0, 'p': 1, 'P': 1}
 totalMaterialWhite = 0
 totalMaterialBlack = 0
 
 
 # Code section to get result of game
 def gameResult(currentGameResult):
-    if currentGameResult == '0-1': # Black wins
+    if currentGameResult == '0-1':  # Black wins
         with open('gameResult.csv', 'a', newline='') as f:
             # create the csv writer
             writer = csv.writer(f)
 
             # write a row to the csv file
             writer.writerow(str(0))
-    elif currentGameResult == '1-0': # White wins
+    elif currentGameResult == '1-0':  # White wins
         with open('gameResult.csv', 'a', newline='') as f:
             # create the csv writer
             writer = csv.writer(f)
@@ -43,23 +44,24 @@ def gameResult(currentGameResult):
             # write a row to the csv file
             writer.writerow(str(1))
     else:  # Draw
-        pass  # Add error/draw compatibility
+        pass  # Add error/draw compatibility later
 
 
 # Code section to write array of total material throughout game to csv file
-def writeToCSV():
+def writeToTotalMaterialCSV():
     with open('totalMaterial.csv', 'a', newline='') as f:
         # create the csv writer
         writer = csv.writer(f)
 
         # write a row to the csv file
-        writer.writerow(totalMaterialWhiteArray)
-        writer.writerow(totalMaterialBlackArray)
+        writer.writerow(totalMaterialWhiteArray)  # Odd rows white
+        writer.writerow(totalMaterialBlackArray)  # Even rows black
+
 
 totalMaterialWhiteArray = []
 totalMaterialBlackArray = []
 whiteTurn = True
-numberOfGamesInPGN = 1
+numberOfGamesInPGN = 200
 
 #  Iterate through all games
 for i in range(numberOfGamesInPGN):
@@ -72,6 +74,11 @@ for i in range(numberOfGamesInPGN):
 
     #  Iterate through all moves on current game
     for move in currentGameData.mainline_moves():
+
+        # Omit draws from totalMaterial CSV
+        if currentGameData.headers["Result"] == '1/2-1/2':
+            break
+
         board.push(move)
         fen = board.fen()
         totalMaterialWhite = 0
@@ -83,10 +90,10 @@ for i in range(numberOfGamesInPGN):
                 if i == ' ':
                     break
                 else:
-                    if str.islower(i): # If its lowercase it is a black piece
+                    if str.islower(i):  # If its lowercase it is a black piece
                         totalMaterialBlack = totalMaterialBlack + dict[i]  # Add to black material total
-                    else: # If its uppercase it is a white piece
-                        totalMaterialWhite = totalMaterialWhite + dict[i] # Add to white material total
+                    else:  # If its uppercase it is a white piece
+                        totalMaterialWhite = totalMaterialWhite + dict[i]  # Add to white material total
         # Iterated through this positions FEN, add to array -- array of total material at each move -- only add when
         # it's the given player (colour white/black) moved
         if whiteTurn:
@@ -94,24 +101,15 @@ for i in range(numberOfGamesInPGN):
         else:
             totalMaterialBlackArray.append(int(totalMaterialBlack))
 
-        whiteTurn = not(whiteTurn) # Change turns white/black
+        whiteTurn = not (whiteTurn)  # Change turns white/black
 
     # Write to CSV and erase current total since its for each game
-    writeToCSV()
+
+    # Omit draws from totalMaterial CSV
+    if currentGameData.headers["Result"] != '1/2-1/2':
+        writeToTotalMaterialCSV()
     totalMaterialWhiteArray = []
     totalMaterialBlackArray = []
-
-
-#  get total number of piece material
-
-
-
-
-import numpy as np
-def euclidean_distance(x1, x2):
-    distance = np.sqrt(np.sum((x1 - x2) ** 2))
-    return distance
-
 
 
 gameResultTemp = []
@@ -120,7 +118,7 @@ with open('gameResult.csv', 'r') as f:
     csv_reader = csv.reader(f)
     for line in csv_reader:
         # process each line
-        #print(line)
+        # print(line)
         gameResultTemp.append(line)
         var1 = ([list(map(int, i)) for i in gameResultTemp])
         var2 = sum(var1, [])
@@ -133,14 +131,22 @@ with open('totalMaterial.csv', 'r') as f:
     csv_reader = csv.reader(f)
     for line in csv_reader:
         # process each line
-        #print(line)
+        # print(line)
         totalMaterialTemp.append(line)
         var3 = ([list(map(int, i)) for i in totalMaterialTemp])
 
-print(var3)
+print(var3[1][0])  # [game - odd=white, even=black][move #]  --value is total material
 
 #  var is the game result, 1 or 0
-#print(var[5])
+# print(var[5])
+
+
+
+def euclidean_distance(x1, x2):
+    distance = np.sqrt(np.sum((x1 - x2) ** 2))
+    return distance
+
+
 
 
 

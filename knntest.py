@@ -1,8 +1,34 @@
 # from https://github.com/patrickloeber/MLfromscratch/blob/master/mlfromscratch/knn.py
 
 from collections import Counter
-
+import csv
 import numpy as np
+
+
+gameResultTemp = []
+
+with open('gameResult.csv', 'r') as f:
+    csv_reader = csv.reader(f)
+    for line in csv_reader:
+        # process each line
+        # print(line)
+        gameResultTemp.append(line)
+        var1 = ([list(map(int, i)) for i in gameResultTemp])
+        gameResultData = sum(var1, [])
+
+print(gameResultData)
+
+totalMaterialTemp = []
+
+with open('totalMaterial.csv', 'r') as f:
+    csv_reader = csv.reader(f)
+    for line in csv_reader:
+        # process each line
+        # print(line)
+        totalMaterialTemp.append(line)
+        totalMaterialData = ([list(map(int, i)) for i in totalMaterialTemp])
+
+print(totalMaterialData[1][0])  # [game - odd=white, even=black][move #]  --value is total material
 
 
 def euclidean_distance(x1, x2):
@@ -48,9 +74,7 @@ if __name__ == "__main__":
     iris = datasets.load_iris()
     X, y = iris.data, iris.target
 
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.2, random_state=1234
-    )
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
 
     k = 3
     clf = KNN(k=k)
