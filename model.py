@@ -12,6 +12,10 @@ import pandas as pd
 import numpy as np
 from sklearn import linear_model, preprocessing
 
+# from sklearn import datasets
+# iris = datasets.load_iris()
+# x,y = iris.data, iris.target
+
 temp = []
 with open('gameResult.csv', 'r') as f:
     csv_reader = csv.reader(f)
@@ -42,8 +46,6 @@ with open('totalMaterial.csv', 'r') as f:
 print(var3)
 white = var3[0]
 black = var3[1]
-
-
 
 
 # var1 - game results -- 1d array (val for each game)
