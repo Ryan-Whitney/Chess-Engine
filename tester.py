@@ -18,6 +18,10 @@ with open('gameResult.csv', 'w') as f:
     # create the csv writer
     writer = csv.writer(f)
 
+with open('chessData.csv', 'w') as f:
+    # create the csv writer
+    writer = csv.writer(f)
+
 # Open PGN
 pgn = open("chessgames.txt")
 
@@ -57,11 +61,20 @@ def writeToTotalMaterialCSV():
         writer.writerow(totalMaterialWhiteArray)  # Odd rows white
         writer.writerow(totalMaterialBlackArray)  # Even rows black
 
+def writeToChessDataCSV():
+    with open('chessData.csv', 'a', newline='') as f:
+        # create the csv writer
+        writer = csv.writer(f)
 
+        # write a row to the csv file
+        writer.writerow(currentListRow)
+
+currentListRow = []
 totalMaterialWhiteArray = []
 totalMaterialBlackArray = []
 whiteTurn = True
-numberOfGamesInPGN = 200
+numberOfGamesInPGN = 1
+moveCount = 0
 
 #  Iterate through all games
 for i in range(numberOfGamesInPGN):
@@ -98,11 +111,20 @@ for i in range(numberOfGamesInPGN):
         # it's the given player (colour white/black) moved
         if whiteTurn:
             totalMaterialWhiteArray.append(int(totalMaterialWhite))
+            currentListRow.append(int(totalMaterialWhite))  # appends total material
+            currentListRow.append(1)  # appends player colour data (1=white)
+            currentListRow.append(len(board.move_stack))  # appends ply move number
+            writeToChessDataCSV()
         else:
             totalMaterialBlackArray.append(int(totalMaterialBlack))
+            currentListRow.append(int(totalMaterialBlack))  # appends total material
+            currentListRow.append(0)  # appends player colour data (0=black)
+            currentListRow.append(len(board.move_stack))  # appends ply move number
+            writeToChessDataCSV()
 
         whiteTurn = not (whiteTurn)  # Change turns white/black
-
+        currentListRow = []  # clears temp variable
+        moveCount = 0;
     # Write to CSV and erase current total since its for each game
 
     # Omit draws from totalMaterial CSV
@@ -110,6 +132,8 @@ for i in range(numberOfGamesInPGN):
         writeToTotalMaterialCSV()
     totalMaterialWhiteArray = []
     totalMaterialBlackArray = []
+
+
 
 
 gameResultTemp = []
@@ -146,7 +170,8 @@ def euclidean_distance(x1, x2):
     distance = np.sqrt(np.sum((x1 - x2) ** 2))
     return distance
 
-
-
+#import pandas as pd
+#data = pd.read_csv("totalMaterial.csv", error_bad_lines=False)
+#print(data)  # To check if our data is loaded correctly
 
 

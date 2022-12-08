@@ -40,7 +40,7 @@ class KNN:
     def predict(self, X):
 
 
-        
+
 
         predictions = [self._predict(x) for x in X]
         return predictions
