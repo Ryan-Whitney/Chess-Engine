@@ -23,7 +23,7 @@ with open('chessData.csv', 'w') as f:
     writer = csv.writer(f)
 
 # Open PGN
-pgn = open("chessgames.txt")
+pgn = open("chessgames3.txt")
 
 # Lookup table for piece values
 dict = {'r': 5, 'R': 5, 'n': 3, 'N': 3, 'b': 3, 'B': 3, 'q': 9, 'Q': 9, 'k': 0, 'K': 0, 'p': 1, 'P': 1}
@@ -51,6 +51,26 @@ def gameResult(currentGameResult):
         pass  # Add error/draw compatibility later
 
 
+def getGameResult(currentGameResult):
+    if currentGameResult == '0-1':  # Black wins
+        return 0
+    elif currentGameResult == '1-0':  # White wins
+        return 1
+    else:  # Draw
+        return -1  # Add error/draw compatibility later
+
+
+def attacked_squares(board, color):
+    attacked = chess.SquareSet()
+    answer = 0;
+    for attacker in chess.SquareSet(board.occupied_co[color]):
+        answer = answer + 1;
+        attacked |= board.attacks(attacker)
+    print(attacked)
+    print("\n")
+    return attacked
+
+
 # Code section to write array of total material throughout game to csv file
 def writeToTotalMaterialCSV():
     with open('totalMaterial.csv', 'a', newline='') as f:
@@ -61,6 +81,7 @@ def writeToTotalMaterialCSV():
         writer.writerow(totalMaterialWhiteArray)  # Odd rows white
         writer.writerow(totalMaterialBlackArray)  # Even rows black
 
+
 def writeToChessDataCSV():
     with open('chessData.csv', 'a', newline='') as f:
         # create the csv writer
@@ -69,12 +90,12 @@ def writeToChessDataCSV():
         # write a row to the csv file
         writer.writerow(currentListRow)
 
+
 currentListRow = []
 totalMaterialWhiteArray = []
 totalMaterialBlackArray = []
 whiteTurn = True
-numberOfGamesInPGN = 1
-moveCount = 0
+numberOfGamesInPGN = 10000  # 3000  #10000
 
 #  Iterate through all games
 for i in range(numberOfGamesInPGN):
@@ -99,10 +120,11 @@ for i in range(numberOfGamesInPGN):
 
         # Iterate through game to get total material
         for i in fen:
-            if not (i.isnumeric()) and i != "/":
+            if not (i.isnumeric()) and i != "/" and i != "[" and i != "]" and i != "~":
                 if i == ' ':
                     break
                 else:
+                    # print(i)
                     if str.islower(i):  # If its lowercase it is a black piece
                         totalMaterialBlack = totalMaterialBlack + dict[i]  # Add to black material total
                     else:  # If its uppercase it is a white piece
@@ -111,20 +133,28 @@ for i in range(numberOfGamesInPGN):
         # it's the given player (colour white/black) moved
         if whiteTurn:
             totalMaterialWhiteArray.append(int(totalMaterialWhite))
-            currentListRow.append(int(totalMaterialWhite))  # appends total material
-            currentListRow.append(1)  # appends player colour data (1=white)
-            currentListRow.append(len(board.move_stack))  # appends ply move number
-            writeToChessDataCSV()
+            if len(board.move_stack) > 20:  # remove first 5 moves
+                # attacked_squares(board, chess.WHITE)
+                currentListRow.append(int(totalMaterialWhite - totalMaterialBlack))  # appends total material
+                #currentListRow.append(1)  # appends player colour data (1=white)
+                #currentListRow.append(len(board.move_stack))  # appends ply move number
+                currentListRow.append(getGameResult(currentGameData.headers["Result"]))  # appends game result, 1=white win, 0=black win
+                writeToChessDataCSV()
+            else:
+                pass
         else:
             totalMaterialBlackArray.append(int(totalMaterialBlack))
-            currentListRow.append(int(totalMaterialBlack))  # appends total material
-            currentListRow.append(0)  # appends player colour data (0=black)
-            currentListRow.append(len(board.move_stack))  # appends ply move number
-            writeToChessDataCSV()
+            if len(board.move_stack) > 20:  # remove first 5 moves
+                currentListRow.append(int(totalMaterialWhite - totalMaterialBlack))  # appends total material
+                #currentListRow.append(0)  # appends player colour data (0=black)
+                #currentListRow.append(len(board.move_stack))  # appends ply move number
+                currentListRow.append(getGameResult(currentGameData.headers["Result"]))  # appends game result, 1=white win, 0=black win
+                writeToChessDataCSV()
+            else:
+                pass
 
         whiteTurn = not (whiteTurn)  # Change turns white/black
         currentListRow = []  # clears temp variable
-        moveCount = 0;
     # Write to CSV and erase current total since its for each game
 
     # Omit draws from totalMaterial CSV
@@ -133,45 +163,4 @@ for i in range(numberOfGamesInPGN):
     totalMaterialWhiteArray = []
     totalMaterialBlackArray = []
 
-
-
-
-gameResultTemp = []
-
-with open('gameResult.csv', 'r') as f:
-    csv_reader = csv.reader(f)
-    for line in csv_reader:
-        # process each line
-        # print(line)
-        gameResultTemp.append(line)
-        var1 = ([list(map(int, i)) for i in gameResultTemp])
-        var2 = sum(var1, [])
-
-print(var2)
-
-totalMaterialTemp = []
-
-with open('totalMaterial.csv', 'r') as f:
-    csv_reader = csv.reader(f)
-    for line in csv_reader:
-        # process each line
-        # print(line)
-        totalMaterialTemp.append(line)
-        var3 = ([list(map(int, i)) for i in totalMaterialTemp])
-
-print(var3[1][0])  # [game - odd=white, even=black][move #]  --value is total material
-
-#  var is the game result, 1 or 0
-# print(var[5])
-
-
-
-def euclidean_distance(x1, x2):
-    distance = np.sqrt(np.sum((x1 - x2) ** 2))
-    return distance
-
-#import pandas as pd
-#data = pd.read_csv("totalMaterial.csv", error_bad_lines=False)
-#print(data)  # To check if our data is loaded correctly
-
-
+print("done running tester.py")
