@@ -1,13 +1,7 @@
 # Ryan Whitney
-# Offical python-chess docs code was used
-# https://python-chess.readthedocs.io/en/latest/pgn.html
-
-# has_castling_rights
-# can see if a side can castle
 
 import chess.pgn
 import csv
-import numpy as np
 
 # To clear file on run
 with open('totalMaterial.csv', 'w') as f:
@@ -27,9 +21,6 @@ pgn = open("chessgames4.txt")
 
 # Lookup table for piece values
 dict = {'r': 5, 'R': 5, 'n': 3, 'N': 3, 'b': 3, 'B': 3, 'q': 9, 'Q': 9, 'k': 0, 'K': 0, 'p': 1, 'P': 1}
-totalMaterialWhite = 0
-totalMaterialBlack = 0
-
 
 # returns game result
 def getGameResult(currentGameResult):
@@ -59,7 +50,8 @@ def writeToChessDataCSV():
         # write a row to the csv file
         writer.writerow(currentListRow)
 
-
+totalMaterialWhite = 0
+totalMaterialBlack = 0
 currentListRow = []
 whiteTurn = True
 whiteQueenExists = False
@@ -104,7 +96,9 @@ for i in range(numberOfGamesInPGN):
         if whiteTurn:
             if len(board.move_stack) > 20:  # remove first 10 moves (20 ply)
                 currentListRow.append(getGameResult(currentGameData.headers["Result"]))  # appends game result, 1=white win, 0=black win
-                currentListRow.append(int(totalMaterialWhite - totalMaterialBlack))  # appends total material
+                currentListRow.append(int(totalMaterialWhite - totalMaterialBlack))  # appends total material difference
+                currentListRow.append(int(totalMaterialWhite))  # appends total material
+                currentListRow.append(int(totalMaterialBlack))  # appends total material
                 currentListRow.append(1)  # appends player colour data (1=white)
                 currentListRow.append(len(board.move_stack))  # appends ply move number
                 if board.is_check():  # if in check append 1 to black
@@ -121,6 +115,7 @@ for i in range(numberOfGamesInPGN):
                     currentListRow.append(1)
                 else:
                     currentListRow.append(0)
+
                 currentListRow.append(attackedSquares(board, chess.WHITE))  # appends number of squares white attacks
                 currentListRow.append(attackedSquares(board, chess.BLACK))  # appends number of squares black attacks
 
@@ -130,7 +125,9 @@ for i in range(numberOfGamesInPGN):
         else:  # black turn
             if len(board.move_stack) > 20:  # remove first 10 moves (20 ply)
                 currentListRow.append(getGameResult(currentGameData.headers["Result"]))  # appends game result, 1=white win, 0=black win
-                currentListRow.append(int(totalMaterialWhite - totalMaterialBlack))  # appends total material
+                currentListRow.append(int(totalMaterialWhite - totalMaterialBlack))  # appends total material difference
+                currentListRow.append(int(totalMaterialWhite))  # appends total material
+                currentListRow.append(int(totalMaterialBlack))  # appends total material
                 currentListRow.append(0)  # appends player colour data (0=black)
                 currentListRow.append(len(board.move_stack))  # appends ply move number
                 if board.is_check():  # if in check append 1 to white
@@ -147,6 +144,7 @@ for i in range(numberOfGamesInPGN):
                     currentListRow.append(1)
                 else:
                     currentListRow.append(0)
+
                 currentListRow.append(attackedSquares(board, chess.WHITE))  # appends number of squares white attacks
                 currentListRow.append(attackedSquares(board, chess.BLACK))  # appends number of squares black attacks
 
@@ -164,10 +162,3 @@ for i in range(numberOfGamesInPGN):
     totalMaterialBlackArray = []
 
 print("done running tester.py")
-
-
-"""
-
-maybe
--if there is a pawn in front of the king
-"""

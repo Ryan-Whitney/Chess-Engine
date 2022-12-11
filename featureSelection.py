@@ -7,7 +7,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.ensemble import RandomForestClassifier 
 from sklearn.linear_model import LogisticRegression 
 from sklearn.metrics import accuracy_score 
-from featurewiz import featurewiz
+import featurewiz
 np.random.seed(1234)
 
 data = pd.read_csv("chessDataFinal.csv")
