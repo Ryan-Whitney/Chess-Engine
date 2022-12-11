@@ -12,12 +12,20 @@ data = pd.read_csv("chessDataFinal.csv")
 predict = "result"
 
 le = preprocessing.LabelEncoder()
-totalMaterial = le.fit_transform(list(data["totalMaterial"]))
-colour = le.fit_transform(list(data["colour"]))
-scaledMoveNumber = le.fit_transform(list(data["scaledMoveNumber"]))
 result = le.fit_transform(list(data["result"]))
 
-X = list(zip(totalMaterial))  # features
+materialDifference = le.fit_transform(list(data["materialDifference"]))
+colour = le.fit_transform(list(data["colour"]))
+plyNumber = le.fit_transform(list(data["plyNumber"]))
+whiteInCheck = le.fit_transform(list(data["whiteInCheck"]))
+blackInCheck = le.fit_transform(list(data["blackInCheck"]))
+whiteQueenExists = le.fit_transform(list(data["whiteQueenExists"]))
+blackQueenExists = le.fit_transform(list(data["blackQueenExists"]))
+numOfSquaresWhiteAttacks = le.fit_transform(list(data["numOfSquaresWhiteAttacks"]))
+numOfSquaresBlackAttacks = le.fit_transform(list(data["numOfSquaresBlackAttacks"]))
+
+
+X = list(zip(materialDifference, colour, plyNumber, whiteInCheck, blackInCheck, whiteQueenExists, blackQueenExists, numOfSquaresWhiteAttacks, numOfSquaresBlackAttacks))  # features
 y = list(result)  # label
 
 # where test_size is the amount of testing data where 1.0 is all data

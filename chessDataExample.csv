@@ -1,4 +1,4 @@
-totalMaterial,colour,scaledMoveNumber,result
+result,materialDifference,colour,plyNumber,whiteInCheck,blackInCheck,whiteQueenExists,blackQueenExists,numOfSquaresWhiteAttacks,numOfSquaresBlackAttacks
 39,1,1,1
 39,1,2,1
 39,1,3,1

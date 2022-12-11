@@ -16,18 +16,24 @@ data = pd.read_csv("chessDataFinal.csv")
 predict = "result"
 
 le = preprocessing.LabelEncoder()
-totalMaterial = (list(data["totalMaterial"]))
-colour = (list(data["colour"]))
-scaledMoveNumber = (list(data["scaledMoveNumber"]))
-result = (list(data["result"]))
+materialDifference = le.fit_transform(list(data["materialDifference"]))
+colour = le.fit_transform(list(data["colour"]))
+plyNumber = le.fit_transform(list(data["plyNumber"]))
+check = le.fit_transform(list(data["check"]))
+whiteQueenExists = le.fit_transform(list(data["whiteQueenExists"]))
+blackQueenExists = le.fit_transform(list(data["blackQueenExists"]))
+numOfSquaresWhiteAttacks = le.fit_transform(list(data["numOfSquaresWhiteAttacks"]))
+numOfSquaresBlackAttacks = le.fit_transform(list(data["numOfSquaresBlackAttacks"]))
 
-X = list(zip(totalMaterial, colour, scaledMoveNumber))  # features
+result = le.fit_transform(list(data["result"]))
+
+X = list(zip(materialDifference, colour, plyNumber, check, whiteQueenExists, blackQueenExists, numOfSquaresWhiteAttacks, numOfSquaresBlackAttacks))  # features
 y = list(result)  # label
 
 # where test_size is the amount of testing data where 1.0 is all data
 x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(X, y, test_size=20)
 
-ax = sns.displot(data=data, x="totalMaterial")
+#ax = sns.displot(data=data, x="totalMaterial")
 #plt.show()
 # ax = sns.displot(data = data, x="Age")
 
