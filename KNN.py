@@ -1,17 +1,9 @@
 import sklearn
-from sklearn.utils import shuffle
 from sklearn.neighbors import KNeighborsClassifier
 import pandas as pd
-import numpy as np
-from sklearn import linear_model, preprocessing
-from sklearn.feature_selection import SelectKBest
-from sklearn.feature_selection import chi2
-from sklearn.preprocessing import StandardScaler
-import seaborn as sns
+from sklearn import preprocessing
 import matplotlib.pyplot as plt
-from sklearn.inspection import permutation_importance
-from sklearn.metrics import confusion_matrix
-from sklearn.metrics import plot_confusion_matrix
+
 
 data = pd.read_csv("chessDataFinal.csv")
 # data = SelectKBest(chi2, k=2).fit_transform(data)
@@ -47,8 +39,9 @@ y = list(result)  # label
 x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(X, y, test_size=0.2, shuffle=True)
 
 temp = []
-maxK = 21
-i = 0
+kvals = []
+maxK = 17
+#i = 0
 # print(data.head())
 
 # print(data.shape)
@@ -58,14 +51,21 @@ for k in range(1, maxK, 2):  # (start, stop, step)
     model = KNeighborsClassifier(n_neighbors=k)
     model.fit(x_train, y_train)
     accuracy = model.score(x_test, y_test)
-    temp.append(accuracy)
-    i = i + 1
+    temp.append(accuracy*100)
+    kvals.append(k)
+    #i = i + 1
     print(accuracy)
 
-print(sum(temp) / i)  # average accuracy of KNN over all values of K
+#print(sum(temp) / i)  # average accuracy of KNN over all values of K
 # ax = sns.displot(data=data, x="materialDifference")
 # plt.show()
 
+plt.bar(kvals, temp)
+plt.ylim(65,76)
+plt.ylabel('Accuracy (%)')
+plt.xlabel('K Value')
+
+plt.show()
 
 """
 model = KNeighborsClassifier(n_neighbors=21)

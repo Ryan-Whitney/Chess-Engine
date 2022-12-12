@@ -56,7 +56,7 @@ currentListRow = []
 whiteTurn = True
 whiteQueenExists = False
 blackQueenExists = False
-numberOfGamesInPGN = 1000  # 3000  #10000
+numberOfGamesInPGN = 1  # 3000  #10000
 
 #  Iterate through all games
 for i in range(numberOfGamesInPGN):
