@@ -4,7 +4,7 @@ import csv
 
 gameResultTemp = []
 
-with open('../gameResult.csv', 'r') as f:
+with open('../garbage/gameResult.csv', 'r') as f:
     csv_reader = csv.reader(f)
     for line in csv_reader:
         # process each line
@@ -17,7 +17,7 @@ print(gameResultData)
 
 totalMaterialTemp = []
 
-with open('../totalMaterial.csv', 'r') as f:
+with open('../garbage/totalMaterial.csv', 'r') as f:
     csv_reader = csv.reader(f)
     for line in csv_reader:
         # process each line

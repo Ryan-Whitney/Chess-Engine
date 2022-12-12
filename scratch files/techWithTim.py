@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 from sklearn import linear_model, preprocessing
 
-data = pd.read_csv("../chessDataFinal.csv")
+data = pd.read_csv("../Important files/chessDataFinal.csv")
 print(data.head())  # To check if our data is loaded correctly
 
 predict = "result"

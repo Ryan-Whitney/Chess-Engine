@@ -10,7 +10,7 @@ from sklearn.metrics import accuracy_score
 import featurewiz
 np.random.seed(1234)
 
-data = pd.read_csv("chessDataFinal.csv")
+data = pd.read_csv("../Important files/chessDataFinal.csv")
 X = data.drop(['price_range'], axis=1)
 
 y = data.price_range.values

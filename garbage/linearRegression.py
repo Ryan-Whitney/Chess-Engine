@@ -9,7 +9,7 @@ from sklearn import metrics
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 
 
-data = pd.read_csv("chessDataFinal.csv")
+data = pd.read_csv("../Important files/chessDataFinal.csv")
 
 predict = "result"
 

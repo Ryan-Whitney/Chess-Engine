@@ -11,7 +11,7 @@ from sklearn.preprocessing import StandardScaler
 from sklearn import tree
 import seaborn as sns
 
-data = pd.read_csv("chessDataFinal.csv")
+data = pd.read_csv("../Important files/chessDataFinal.csv")
 # print(data.head())
 predict = "result"
 

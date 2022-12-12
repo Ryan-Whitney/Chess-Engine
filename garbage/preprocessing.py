@@ -11,7 +11,7 @@
 import chess.pgn
 
 # Open PGN
-pgn = open("chessgames2.txt")
+pgn = open("../Important files/chessgames2.txt")
 #print(first_game.headers["Result"])
 
 # Lookup table for piece values

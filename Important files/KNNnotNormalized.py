@@ -15,20 +15,20 @@ data = pd.read_csv("chessDataFinal.csv")
 
 predict = "result"
 
-le = preprocessing.LabelEncoder()
-result = le.fit_transform(list(data["result"]))
 
-materialDifference = le.fit_transform(list(data["materialDifference"]))
-totalWhiteMaterial = le.fit_transform(list(data["totalWhiteMaterial"]))
-totalBlackMaterial = le.fit_transform(list(data["totalBlackMaterial"]))
-colour = le.fit_transform(list(data["colour"]))
-plyNumber = le.fit_transform(list(data["plyNumber"]))
-whiteInCheck = le.fit_transform(list(data["whiteInCheck"]))
-blackInCheck = le.fit_transform(list(data["blackInCheck"]))
-whiteQueenExists = le.fit_transform(list(data["whiteQueenExists"]))
-blackQueenExists = le.fit_transform(list(data["blackQueenExists"]))
-numSquaresWhiteAttacks = le.fit_transform(list(data["numSquaresWhiteAttacks"]))
-numSquaresBlackAttacks = le.fit_transform(list(data["numSquaresBlackAttacks"]))
+result = (list(data["result"]))
+
+materialDifference = (list(data["materialDifference"]))
+totalWhiteMaterial = (list(data["totalWhiteMaterial"]))
+totalBlackMaterial = (list(data["totalBlackMaterial"]))
+colour = (list(data["colour"]))
+plyNumber = (list(data["plyNumber"]))
+whiteInCheck = (list(data["whiteInCheck"]))
+blackInCheck = (list(data["blackInCheck"]))
+whiteQueenExists = (list(data["whiteQueenExists"]))
+blackQueenExists = (list(data["blackQueenExists"]))
+numSquaresWhiteAttacks = (list(data["numSquaresWhiteAttacks"]))
+numSquaresBlackAttacks = (list(data["numSquaresBlackAttacks"]))
 
 X = list(zip(materialDifference, totalWhiteMaterial, totalBlackMaterial, colour, plyNumber, whiteInCheck, blackInCheck,
              whiteQueenExists, blackQueenExists,
@@ -64,7 +64,7 @@ plt.bar(kvals, temp)
 plt.ylim(65,76)
 plt.ylabel('Accuracy (%)')
 plt.xlabel('K Value')
-
+#plt.title('KNN results with varying K values')
 plt.show()
 
 """
@@ -75,4 +75,4 @@ accuracy = model.score(x_test, y_test)
 print(accuracy)
 """
 
-print("done running KNN")
+print("done running KNN.py")

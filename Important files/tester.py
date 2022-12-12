@@ -4,11 +4,11 @@ import chess.pgn
 import csv
 
 # To clear file on run
-with open('totalMaterial.csv', 'w') as f:
+with open('../garbage/totalMaterial.csv', 'w') as f:
     # create the csv writer
     writer = csv.writer(f)
 
-with open('gameResult.csv', 'w') as f:
+with open('../garbage/gameResult.csv', 'w') as f:
     # create the csv writer
     writer = csv.writer(f)
 
@@ -56,7 +56,7 @@ currentListRow = []
 whiteTurn = True
 whiteQueenExists = False
 blackQueenExists = False
-numberOfGamesInPGN = 1  # 3000  #10000
+numberOfGamesInPGN = 500  # 3000  #10000
 
 #  Iterate through all games
 for i in range(numberOfGamesInPGN):

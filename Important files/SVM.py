@@ -3,6 +3,7 @@ import sklearn
 import pandas as pd
 from sklearn import preprocessing
 from sklearn import metrics
+import matplotlib.pyplot as plt
 
 data = pd.read_csv("chessDataFinal.csv")
 
@@ -27,7 +28,30 @@ X = list(zip(materialDifference, totalWhiteMaterial, totalBlackMaterial, colour,
              numSquaresWhiteAttacks, numSquaresBlackAttacks))  # features
 y = list(result)  # label
 
+svmAccuracies = []
+"""
+x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(X, y, test_size=0.2)
 
+svmModel = svm.SVC(kernel="rbf")
+svmModel.fit(x_train, y_train)
+
+y_predict = svmModel.predict(x_test)
+
+accuracy = metrics.accuracy_score(y_test, y_predict)
+svmAccuracies.append(accuracy)
+print(accuracy)
+
+
+x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(X, y, test_size=0.2)
+
+svmModel = svm.SVC(kernel="linear")
+svmModel.fit(x_train, y_train)
+
+y_predict = svmModel.predict(x_test)
+
+accuracy = metrics.accuracy_score(y_test, y_predict)
+svmAccuracies.append(accuracy)
+print(accuracy)
 
 x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(X, y, test_size=0.2)
 
@@ -37,17 +61,29 @@ svmModel.fit(x_train, y_train)
 y_predict = svmModel.predict(x_test)
 
 accuracy = metrics.accuracy_score(y_test, y_predict)
+svmAccuracies.append(accuracy)
 print(accuracy)
-
 
 x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(X, y, test_size=0.2)
 
-svmModel = svm.SVC(kernel="poly")
+svmModel = svm.SVC(kernel="sigmoid")
 svmModel.fit(x_train, y_train)
 
 y_predict = svmModel.predict(x_test)
 
-accuracy1 = metrics.accuracy_score(y_test, y_predict)
-print(accuracy1)
+accuracy = metrics.accuracy_score(y_test, y_predict)
+svmAccuracies.append(accuracy)
+print(accuracy)
+"""
+xlabels = ["RBF", "Linear", "Polynomial", "Sigmoid"]
+svmAccuracies = [63.1, 61.7, 62.3, 50.6]
+
+plt.bar(xlabels, svmAccuracies)
+plt.ylim(50, 65)
+plt.ylabel('Accuracy (%)')
+plt.xlabel('Kernel Type')
+#plt.title('SVM Results')
+plt.show()
 
 
+print("done running SVM.py")
