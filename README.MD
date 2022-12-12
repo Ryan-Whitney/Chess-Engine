@@ -1,6 +1,7 @@
 # ECE4553 Report
 
 THE CODE IS MESSY AND WILL BE CLEANED UP ON DEC 13th DURING THE AFTERNOON
+PRESENTATION SLIDES WILL ALSO BE SUBMITTED ON DEC 13th
 
 The `tester.py` file is used to create the CSV dataset file from the downloaded file from https://database.lichess.org/
 
