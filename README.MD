@@ -1,8 +1,5 @@
 # ECE4553 Report
 
-THE CODE IS MESSY AND WILL BE CLEANED UP ON DEC 14th DURING THE AFTERNOON
-PRESENTATION SLIDES WILL ALSO BE SUBMITTED ON DEC 14th
-
 The only relevant folder is the "Important Files" folder
 
 The `tester.py` file is used to create the CSV dataset file from the downloaded file from https://database.lichess.org/
