@@ -12,3 +12,15 @@ The `KNN.py` file runs the KNN model
 The `SVM.py` file runs the SVM model
 
 Note that the `SVM.py` file takes quite a few minutes to run
+
+<img alt="My Image" src="<img alt="My Image" src="/ECE4553TermProjectReportRyanWhitney.png"/>
+ECE4553TermProjectReportRyanWhitney.png
+
+
+
+<img src="READMEfiles/ECE4553TermProjectReportRyanWhitney1.png" />
+<img src="READMEfiles/ECE4553TermProjectReportRyanWhitney2.png" />
+<img src="READMEfiles/ECE4553TermProjectReportRyanWhitney3.png" />
+<img src="READMEfiles/ECE4553TermProjectReportRyanWhitney4.png" />
+<img src="READMEfiles/ECE4553TermProjectReportRyanWhitney5.png" />
+
