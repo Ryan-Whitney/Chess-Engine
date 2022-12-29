@@ -1,6 +1,6 @@
 # Chess Position Evaluator
 
-This repository contains KNN and SVM models to evaluate whether white or black is winning in a given position. Draws are omitted.
+This repository contains KNN and SVM models to evaluate whether white or black is winning in a given position. Draws are omitted. This report was created for a university course.
 
 
 <img src="READMEfiles/ECE4553TermProjectReportRyanWhitney1.png" />
