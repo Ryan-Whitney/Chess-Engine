@@ -1,8 +1,8 @@
 # Chess Position Evaluator
 
-This repository contains KNN and SVM models to evaluate whether white or black is winning in a given position. Draws are omitted. This report was created for a university course.
+This repository contains a binary classifier using KNN and SVM models to evaluate whether white or black is winning in a given position. Draws are omitted. This report was created for a university course.
 
-In the future, a Lichess bot will be created and more models will be implemented.
+In the future, a Lichess bot will be created, more models will be implemented and a regressional output will be added instead of the binary output.
 
 <img src="READMEfiles/ECE4553TermProjectReportRyanWhitney1.png" />
 <img src="READMEfiles/ECE4553TermProjectReportRyanWhitney2.png" />
