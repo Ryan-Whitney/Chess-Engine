@@ -1,4 +1,4 @@
-result,materialDifference,totalWhiteMaterial,totalBlackMaterial,colour,plyNumber,whiteInCheck,blackInCheck,white_queen_exists,black_queen_exists,numSquaresWhiteAttacks,numSquaresBlackAttacks
+result,material_difference,total_white_material,total_black_material,colour,ply_number,white_in_check,black_in_check,white_queen_exists,black_queen_exists,num_squares_white_attacks,num_squares_black_attacks
 0,0,38,38,1,21,0,0,1,1,34,33
 0,0,38,38,0,22,0,0,1,1,34,33
 0,0,38,38,1,23,0,0,1,1,36,34

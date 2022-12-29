@@ -14,24 +14,23 @@ data = (data - data.min()) / (data.max() - data.min())  # min max normalization 
 le = preprocessing.LabelEncoder()
 result = le.fit_transform(list(data["result"]))
 
-materialDifference = le.fit_transform(list(data["materialDifference"]))
-totalWhiteMaterial = le.fit_transform(list(data["totalWhiteMaterial"]))
-totalBlackMaterial = le.fit_transform(list(data["totalBlackMaterial"]))
+material_difference = le.fit_transform(list(data["material_difference"]))
+total_white_material = le.fit_transform(list(data["total_white_material"]))
+total_black_material = le.fit_transform(list(data["total_black_material"]))
 colour = le.fit_transform(list(data["colour"]))
-plyNumber = le.fit_transform(list(data["plyNumber"]))
-whiteInCheck = le.fit_transform(list(data["whiteInCheck"]))
-blackInCheck = le.fit_transform(list(data["blackInCheck"]))
-whiteQueenExists = le.fit_transform(list(data["white_queen_exists"]))
-blackQueenExists = le.fit_transform(list(data["black_queen_exists"]))
-numSquaresWhiteAttacks = le.fit_transform(list(data["numSquaresWhiteAttacks"]))
-numSquaresBlackAttacks = le.fit_transform(list(data["numSquaresBlackAttacks"]))
+ply_number = le.fit_transform(list(data["ply_number"]))
+white_in_check = le.fit_transform(list(data["white_in_check"]))
+black_in_check = le.fit_transform(list(data["black_in_check"]))
+white_queen_exists = le.fit_transform(list(data["white_queen_exists"]))
+black_queen_exists = le.fit_transform(list(data["black_queen_exists"]))
+num_squares_white_attacks = le.fit_transform(list(data["num_squares_white_attacks"]))
+num_squares_black_attacks = le.fit_transform(list(data["num_squares_black_attacks"]))
 
-X = list(zip(materialDifference, totalWhiteMaterial, totalBlackMaterial, colour, plyNumber, whiteInCheck, blackInCheck,
-             whiteQueenExists, blackQueenExists,
-             numSquaresWhiteAttacks, numSquaresBlackAttacks))  # features
+X = list(zip(material_difference, total_white_material, total_black_material, colour, ply_number, white_in_check,
+             black_in_check, white_queen_exists, black_queen_exists,
+             num_squares_white_attacks, num_squares_black_attacks))  # features
 y = list(result)  # label
 
-# where test_size is the amount of testing data where 1.0 is all data
 x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(X, y, test_size=0.2, shuffle=True)
 
 knn_accuracy = []
@@ -48,7 +47,7 @@ for k in range(1, upper_k_bound, 2):
     print(accuracy)
 
 plt.bar(k_vals, knn_accuracy)
-plt.ylim(65, 100)
+plt.ylim(65, 76)
 plt.ylabel('Accuracy (%)')
 plt.title('KNN Results With Varying K Values')
 plt.xlabel('K Value')

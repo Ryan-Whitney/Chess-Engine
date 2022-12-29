@@ -60,13 +60,13 @@ def write_to_chess_data_CSV(data):
 total_material_white = 0
 total_material_black = 0
 data = []
-header_tags = ["result", "materialDifference", "totalWhiteMaterial", "totalBlackMaterial", "colour", "plyNumber",
-               "whiteInCheck", "blackInCheck", "white_queen_exists", "black_queen_exists", "numSquaresWhiteAttacks",
-               "numSquaresBlackAttacks"]
+header_tags = ["result", "material_difference", "total_white_material", "total_black_material", "colour", "ply_number",
+               "white_in_check", "black_in_check", "white_queen_exists", "black_queen_exists", "num_squares_white_attacks",
+               "num_squares_black_attacks"]
 white_turn = True
 white_queen_exists = False
 black_queen_exists = False
-number_of_games_in_PGN = 1000
+number_of_games_in_PGN = 1000  # number of games to parse through
 starting_ply_offset = 20  # remove first x ply (0.5*x moves) from start of chess game
 
 write_to_chess_data_CSV(header_tags)  # Add labels to data file
